@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8090:8090"
+    environment:
+      - PORT=8090
+      - DB_TYPE=${DB_TYPE}
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - postgres
+    command: ["./server", "-db", "$DB_TYPE"]
+    restart: on-failure
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  postgres:
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: comments_db_backend
+      POSTGRES_USER: comments_backend
+      POSTGRES_PASSWORD: password_backend
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
