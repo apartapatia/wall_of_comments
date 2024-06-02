@@ -26,8 +26,8 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: comments_db_backend
-      POSTGRES_USER: comments_backend
+      POSTGRES_DB: wall_db_backend
+      POSTGRES_USER: wall_backend
       POSTGRES_PASSWORD: password_backend
     volumes:
       - pgdata:/var/lib/postgresql/data
