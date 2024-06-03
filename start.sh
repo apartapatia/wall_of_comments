@@ -7,5 +7,5 @@ if [ "$DB_TYPE" = "redis" ]; then
 elif [ "$DB_TYPE" = "postgres" ]; then
     docker-compose up -d app postgres
 else
-    echo "Unknown database type: $DB_TYPE"
+    echo "unknown database type: $DB_TYPE"
 fi

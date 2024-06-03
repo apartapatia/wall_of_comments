@@ -182,6 +182,7 @@ func buildCommentModel(comment *entity.Comment) *model.Comment {
 		Replies:   []*model.Comment{},
 	}
 }
+
 func buildCommentTree(comments []*entity.Comment) ([]*model.Comment, error) {
 	commentMap := make(map[string]*model.Comment)
 	for _, comment := range comments {
@@ -202,6 +203,7 @@ func buildCommentTree(comments []*entity.Comment) ([]*model.Comment, error) {
 
 	return commentModels, nil
 }
+
 func createAndSaveEntity[T any](entity T, saveFunc func(T) (T, error)) (T, error) {
 	savedEntity, err := saveFunc(entity)
 	if err != nil {

@@ -1,0 +1,24 @@
+name: Go tests
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.22'
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Run tests Redis
+        run: go test -v -race ./internal/database/redis
+
+      - name: Run tests PostgreSQL
+        run: go test -v -race ./internal/database/pq
